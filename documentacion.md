@@ -85,3 +85,17 @@ Para asignar una dirección IP elástica desde un grupo de direcciones IPv4 púb
 * Elija Allocate (Asignar) y cierre la pantalla de confirmación.
 
     ![](images/AssociateElasticIp.png)
+
+### Paso 6: Gestión de DNS
+
+* A = Dirección (address). Este registro se usa para traducir nombres de servidores de alojamiento a direcciones IPv4.
+
+* AAAA = Dirección (address). Este registro se usa en IPv6 para traducir nombres de hosts a direcciones IPv6.
+
+* CNAME = Nombre canónico (canonical Name). Se usa para crear nombres de servidores de alojamiento adicionales, o alias, para los servidores de alojamiento de un dominio. Es usado cuando se están corriendo múltiples servicios (como FTP y servidor web) en un servidor con una sola dirección IP. Cada servicio tiene su propia entrada de DNS (como ftp.ejemplo.com. y www.ejemplo.com.). Esto también es usado cuando corres múltiples servidores HTTP, con diferentes nombres, sobre el mismo host. Se escribe primero el alias y luego el nombre real. Ej. Ejemplo1 IN CNAME ejemplo2
+
+* SRV = Service record (SRV record).
+
+* TXT = Un registro TXT es un tipo de registro DNS que proporciona información de texto a fuentes externas a tu dominio.El texto puede ser lenguaje legible por máquina o por el ser humano, y se puede utilizar para diversos fines.
+
+![](images/CrearDNS.png)
