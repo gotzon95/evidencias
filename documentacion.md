@@ -62,3 +62,26 @@ Ahora pon el index.php el primero.
     <IfModule mod_dir.c>
     DirectoryIndex index.php index.html index.cgi index.pl index.xhtml index.htm
     </IfModule>
+
+
+### Paso 5: IP Elastica
+
+Para asignar una dirección IP elástica desde un grupo de direcciones IPv4 públicas de Amazon utilizando la consola:
+
+* Abra la consola de Amazon EC2 en https:// console.aws.amazon.com/ec2/.
+
+* En el panel de navegación, elija Elastic IPs (Direcciones IP elásticas).
+
+    
+
+* Elija Allocate new address (Asignar nueva dirección).
+
+    ![](images/NewElasticIp.png)
+
+* En IPv4 address pool (Grupo de direcciones IPv4), elija Amazon pool (Grupo de Amazon).
+
+    ![](images/AmazonPoolGroup.png)
+
+* Elija Allocate (Asignar) y cierre la pantalla de confirmación.
+
+    ![](images/AssociateElasticIp.png)
