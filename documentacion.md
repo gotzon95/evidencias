@@ -99,3 +99,130 @@ Para asignar una dirección IP elástica desde un grupo de direcciones IPv4 púb
 * TXT = Un registro TXT es un tipo de registro DNS que proporciona información de texto a fuentes externas a tu dominio.El texto puede ser lenguaje legible por máquina o por el ser humano, y se puede utilizar para diversos fines.
 
 ![](images/CrearDNS.png)
+
+### Paso 7: Virtual Hosts
+
+Primero vamos a crear los subdominios a las cuales les llamaremos:
+
+* cliente-tunombre.dominios.fpz1920.com--> a tu IP Elástica
+* servidor-tunombre.dominios.fpz1920.com--> a tu IP Elástica
+
+![](images/Los2Subdominios.png)
+
+Lo siguiente es crear dos carpetas en `var/www/` que se llamaran cliente y servidor. Lo primero es ir a la carpeta www para eso meteremos el siguiente comando.
+
+    cd var/www/
+
+Una vez dendro introduciremos el siguiente comando para crear las carpetas.
+
+    sudo mkdir cliente
+    sudo mkdir servidor
+
+![](images/CarpetasEnWWW.png)
+
+El siguiente paso es crear un `Index.html` en cada carpeta, para ello meteremos el siguiente codigo cuando estemos dentro de la carpeta.
+
+    sudo nano Index.html
+
+![](images/NanoIndex.png)
+
+Dentro de la carpeta cliente escribiremos lo siguiente:
+
+    <h1>Hola! soy el CLIENTE :D</h1>
+    <p>¡Todo lo que pido me lo dan!</p>
+
+Y en la carpeta servidor:
+
+    <h1>Hola! soy el SERVIDOR :'(</h1>
+    <p>¡Siempre trabajando para que otros se lleven el mérito!</p>
+
+Ahora vamos a ir a la carpeta sites-avaiable en la cual tendremos que crear una configuracion para que redirija a nuestra carpeta. Para ello meteremos el siguiente codigo.
+
+    cd etc/apache2/sites-available/
+
+Una vez dentro copiaremos una configuracion que este y lo cambiaremos.
+
+     sudo cp 000-default.conf cliente.conf
+
+
+![](images/clienteConf.png)
+![](images/ServidorConf.png)
+
+Una vez escrito eso dentro de la configuracion meteremos el siguiente comando para validarlo.
+
+    sudo a2ensite cliente.conf
+    sudo a2ensite servidor.conf
+
+Y por lo ultimo sera resetear apache.
+
+    sudo service apache2 restart
+
+![](images/PaginaCliente.png)
+![](images/PaginaServidor.png)
+
+### Paso 8: Servidor FTP
+
+Primero vamos a crear 3 usuarios cliente, servidor y administrador para eso meteromos el siguiente comando.
+
+    sudo adduser cliente
+
+![](images/clienteUser.png)
+
+    sudo adduser servidor
+
+![](images/serverUser.png)
+
+    sudo adduser administrador
+
+![](images/adminUser.png)
+
+Ahora instalaremos el servidor FTP, para ello meteremos el siguiente comando:
+
+    sudo apt-get install vsftpd
+
+![](images/InstallServerFTP.png)
+
+Una vez que haya instalado el paquete, puede ejecutar el servicio y habilitarlo para que se ejecute al iniciar el sistema.
+
+    sudo systemctl start vsftpd
+    sudo systemctl enable vsftpd
+
+![](images/FTPenable.png)
+
+Ahora habilitaremos el puerto 21 para el servicio FTP
+
+![](images/Puerto21.png)
+
+Por lo ultimo reseteamos el servicio FTP con el sigiente comando:
+
+    sudo service vsftpd restart
+
+    
+### Paso 8: Crear copias de seguridad mediante comandos
+
+Para empezar buscaremos los directorios creados anteriormente de cliente y servidor.Cuando los tengamos los comprimiremos. Estos son los comando que mas se utilizan
+
+* Archivos .tar: Empaquetar: tar -cvf paquete.tar /dir/a/comprimir/ Desempaquetar: tar -xvf paquete.tar
+
+* Archivos .gz: Comprimir: gzip -9 index.php Descomprimir: gzip -d index.php.gz
+
+* Archivos .zip: Comprimir: zip archivo.zip carpeta Descomprimir: unzip archivo.zip
+
+Ahora vamos a comprimir los directorios cliente y servidor con los siguientes comandos:
+
+    sudo tar -cvzf cliente.tgz /var/www/cliente/
+
+![](images/ComprimirCliente.png)
+
+    sudo tar -cvzf servidor.tgz /var/www/servidor/
+
+![](images/ComprimirServidor.png)
+
+Comprobacion:
+
+![](images/ComprobarComprimidos.png)
+
+
+
+
+
