@@ -223,6 +223,56 @@ Comprobacion:
 ![](images/ComprobarComprimidos.png)
 
 
+### Paso 9: Automatizar copias de seguridad
 
+Lo primero es crear el script. Este script creara copias de seguridad de la base de datos y las carpetas comprimidas. Para empezar meteremos el siguiente comando:
 
+    sudo nano scriptCopia.sh
 
+![](images/scriptCreate.png)
+
+Dentro del script escribiremos lo siguiente:
+
+![](images/scriptDentro.png)
+
+El siguiente paso es darle permisos al script, para ello meteremos el siguiente comando.
+
+    sudo chmod 700 scriptCopia.sh
+
+![](images/scriptPermisos.png)
+
+Ahora comprobaremos el script. Mete el siguiente comando.
+
+    sudo ./scriptCopia.sh
+    
+![](images/scriptComprobar.png)
+
+Una vez que funciona haremos lo mismo con el cliente.
+
+    sudo nano scriptCopiaCliente.sh 
+
+![](images/scriptCliente.png)
+
+Y le damos permisos.
+
+    sudo chmod 700 scriptCopiaCliente.sh
+
+Y lo comprobamos.
+
+    sudo ./scriptCopiaCliente.sh
+
+![](images/scriptClienteComprobar.png)
+
+El siguiente paso es automatizar los script que hemos creado anteriormente. Para ello meteremos el siguiente comando. Y dentro escribiremos lo siguiente.
+
+    sudo nano crontab
+
+![](images/automatizarScript.png)
+
+El ultimo paso es crear otro script para borrar automaticamente las copias de seguridad que se esten almacenando.
+
+    sudo nano borrar.sh
+
+![](images/scriptBorrar.png)
+
+hau eginda bi egunero ezabatuko ditu.
